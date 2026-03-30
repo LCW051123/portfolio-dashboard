@@ -1784,9 +1784,10 @@ function resetPortfolio(){
 }
 
 // ── Finnhub API (Vercel 프록시) ───────────────────────────
+const API_BASE=location.hostname==='lcw051123.github.io'?'https://portfolio-vercel-five-taupe.vercel.app':'';
 async function fhGet(path){
   try{
-    const r=await fetch('/api/finnhub?path='+encodeURIComponent(path));
+    const r=await fetch(API_BASE+'/api/finnhub?path='+encodeURIComponent(path));
     if(!r.ok)throw new Error('HTTP '+r.status);
     return await r.json();
   }catch(e){console.warn('[fhGet]',path,'실패:',e.message);return{};}
